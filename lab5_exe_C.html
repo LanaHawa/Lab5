@@ -2,8 +2,8 @@
 =========================================================
 Name        : lab5_exe_C.html
 Assignment  : Lab 5, Exercise C
-Author(s)   : Mahdi Ansari, William Arthur Philip Louis
-Submission  : May 21, 2030
+Author(s)   : Lana Hawa , Dylan Wenaas
+Submission  : Feb 14,2024 
 Description : DOM Elements.
 =========================================================
 -->
@@ -106,7 +106,7 @@ Description : DOM Elements.
 				<h2>About Us</h2>
 				<p>This is a paragraph about our company.</p>
 				<img src="./images/logo.svg" alt="Company logo" width="100px" />
-                
+
 				<h3>Our Journey</h3>
 				<p>
 					Welcome to our <span class="companyName">&nbsp;</span>, a place where
@@ -190,49 +190,77 @@ Description : DOM Elements.
 					developers are the agile architects of the web, capable of building
 					dynamic and responsive websites, applications, and systems that drive
 					modern digital experiences.
-				</p>				
+				</p>
 			</article>
-            <aside>
-                <h3>Related Links</h3>
-                <ul>
-                    <li><a href="#">W3School</a></li>
-                    <li><a href="#">AWS</a></li>
-                </ul>
-            </aside>
+			<aside>
+				<h3>Related Links</h3>
+				<ul>
+					<li><a href="#">W3School</a></li>
+					<li><a href="#">AWS</a></li>
+				</ul>
+			</aside>
 		</div>
 		<footer>
 			<p>Copyright © 2024</p>
 		</footer>
 		<script>
-			document.addEventListener('DOMContentLoaded', function afterRender() {
+			document.addEventListener("DOMContentLoaded", function afterRender() {
 				// Task 1: Set the text content of all elements with the class 'companyName' and remove their border
-
+				var companyElements = document.querySelectorAll(".companyName");
+				companyElements.forEach(function (element) {
+					element.textContent = "Lana";
+					element.style.border = "none"; // Remove border
+				});
 
 				// Task 2: Change the background color of the navigation bar
-				
+				var navBar = document.querySelector("nav");
+				navBar.style.backgroundColor = "Yellow";
 
 				// Task 3: Hide the section titled 'What is full-stack?'
-
-
+				var fullStackSection = document.querySelector("article");
+				fullStackSection.style.display = "none";
 				// Task 4: Create a new <p> element and append it to the 'About Us' section
-
-
+				var aboutUsSection = document.querySelector("section");
+				var newParagraph = document.createElement("p");
+				newParagraph.textContent = "This is a new paragraph ";
+				newParagraph.style.color = "red";
+				aboutUsSection.appendChild(newParagraph);
 				// Task 5: Add placeholders to input elements based on their corresponding label IDs
-
-
+				var labels = document.querySelectorAll("label");
+				labels.forEach(function (label) {
+					var inputId = label.getAttribute("for");
+					var inputElement = document.getElementById(inputId);
+					var labelText = label.textContent;
+					labelText = labelText.replace(":", "");
+					inputElement.placeholder = labelText.trim();
+				});
 				// Task 6: Set the src attribute of the image
-
+				var logoImage = document.querySelector("img");
+				logoImage.setAttribute("src", "./images/example.svg");
 
 				// Task 7: Add a new item in the navigation menu
-
+				var newNavItem = document.createElement("li");
+				var newNavLink = document.createElement("a");
+				newNavLink.setAttribute("href", "#");
+				newNavLink.textContent = "Blog";
+				newNavItem.appendChild(newNavLink);
+				var navMenu = document.querySelector("nav ul");
+				navMenu.appendChild(newNavItem);
 
 				// Task 8: Change the submit button text upon clicking and make it disabled
-
-
+				var submitButton = document.querySelector("input[type='button']");
+				submitButton.addEventListener("click", function () {
+					submitButton.value = "Submitted";
+					submitButton.disabled = true;
+				});
 				// Task 9: Change the text color of each item in the 'Related Links' to green
-
-
+				var relatedLinks = document.querySelectorAll("aside ul li a");
+				relatedLinks.forEach(function (link) {
+					link.style.color = "green";
+				});
 				// Task 10: Add a red solid border to the footer
+				var footer = document.querySelector("footer");
+				footer.style.border = "2px solid red";
 			});
 		</script>
 	</body>
